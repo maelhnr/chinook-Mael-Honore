@@ -1,5 +1,12 @@
+<form method="GET" action="{% url 'album_list' %}">
+    <input type="text" name="q" value="{{ query }}" placeholder="Rechercher un album...">
+    <button type="submit">Rechercher</button>
+</form>
+
 {% for album in albums %}
     <p>
         <a href="{% url 'album_detail' album.id %}">{{ album.title }}</a>
     </p>
+{% empty %}
+    <p>Aucun album trouvé.</p>
 {% endfor %}

@@ -1,0 +1,12 @@
+<h2>{{ album.title }}</h2>
+<ul>
+    {% for track in tracks %}
+        <li>
+            {{ track.name }} - 
+            {{ track.composer|default:"Auteur inconnu" }} - 
+            {{ track.milliseconds|floatformat:2 }} ms - 
+            {{ track.unitPrice }} €
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'album_list' %}">Retour aux albums</a>

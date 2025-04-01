@@ -3,7 +3,7 @@ click==8.1.8
 colorama==0.4.6
 cssbeautifier==1.15.4
 Django==4.2
-djlint==1.36.4
+djlint==1.35.2
 EditorConfig==0.17.0
 jsbeautifier==1.15.4
 json5==0.10.0

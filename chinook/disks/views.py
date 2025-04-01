@@ -21,3 +21,6 @@ def album_detail(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
     tracks = Track.objects.filter(album=album)
     return render(request, 'disks/album_detail.html', {'album': album, 'tracks': tracks})
+
+def home(request):
+    return render(request, 'index.html') 

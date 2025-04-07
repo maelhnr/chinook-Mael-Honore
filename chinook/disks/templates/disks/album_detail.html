@@ -1,12 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Détails de l'album{% endblock %}
+
+{% block content %}
 <h2>{{ album.title }}</h2>
-<ul>
+<p>Artiste : <strong>{{ album.artist.name }}</strong></p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titres</th>
+            <th>Durée</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for track in tracks %}
-        <li>
-            {{ track.name }} - 
-            {{ track.composer|default:"Auteur inconnu" }} - 
-            {{ track.milliseconds|floatformat:2 }} ms - 
-            {{ track.unitPrice }} €
-        </li>
+        <tr>
+            <td>{{ track.name }}</td>
+            <td>{{ track.milliseconds|floatformat:0 }} ms</td>
+            <td>{{ track.unitPrice }} €</td>
+        </tr>
     {% endfor %}
-</ul>
-<a href="{% url 'album_list' %}">Retour aux albums</a>
+    </tbody>
+</table>
+
+<a href="{% url 'album_list' %}" class="btn btn-secondary mt-3">Retour à la liste</a>
+{% endblock %}

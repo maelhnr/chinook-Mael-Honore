@@ -1,12 +1,28 @@
-<form method="GET" action="{% url 'album_list' %}">
-    <input type="text" name="q" value="{{ query }}" placeholder="Rechercher un album...">
-    <button type="submit">Rechercher</button>
+{% extends 'base.html' %}
+
+{% block title %}Albums{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Liste des albums</h1>
+
+<form method="GET" action="{% url 'album_list' %}" class="mb-4 d-flex justify-content-center">
+    <div class="input-group" style="max-width: 600px; width: 100%;">
+      <input type="text" name="q" value="{{ query }}" placeholder="Rechercher un album ou un artiste..." class="form-control">
+      <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+    </div>
+  </form>
+   
 </form>
 
-{% for album in albums %}
-    <p>
-        <a href="{% url 'album_detail' album.id %}">{{ album.title }}</a>
-    </p>
-{% empty %}
-    <p>Aucun album trouvé.</p>
-{% endfor %}
+{% if albums %}
+    <ul class="list-group">
+    {% for album in albums %}
+        <li class="list-group-item">
+            <a href="{% url 'album_detail' album.id %}">{{ album.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <div class="alert alert-warning">Aucun album trouvé.</div>
+{% endif %}
+{% endblock %}
